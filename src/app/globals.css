@@ -4,15 +4,15 @@
 
 :root {
   --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+  --background-start-rgb: 173, 216, 230, 0.5;
+  --background-end-rgb: 240, 248, 255, 0.5;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+    --foreground-rgb: 0, 0, 0;
+    --background-start-rgb: 173, 216, 230, 0.5;
+    --background-end-rgb: 240, 248, 255, 0.5;
   }
 }
 
@@ -24,4 +24,154 @@ body {
       rgb(var(--background-end-rgb))
     )
     rgb(var(--background-start-rgb));
+}
+
+/* Nav */
+.nav {
+  @apply py-5 px-5 md:flex md:flex-row md:justify-between  relative
+}
+
+.nav ul {
+  @apply absolute text-black md:text-black bg-white h-screen pb-5
+   md:bg-transparent mt-14 inset-x-0 top-0 md:flex md:flex-row sm:mt-14 md:h-0 md:static md:mt-0 md:visible
+   transition-all ease-out duration-200 md:transition-none z-10
+ }
+ .nav ul li  {
+   @apply  mt-6 md:mt-0 font-bold md:font-normal capitalize
+ }
+
+ .nav ul li a {
+  @apply ml-4 md:ml-4 hover:text-primary text-2xl md:text-xl
+}
+
+.headerImage{
+  position: relative;
+      width: 150px;
+      height: 150px;
+      overflow: hidden;
+      border-radius: 50%;
+}
+.spinning-container {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%; /* Ensure it's a circle */
+  overflow: hidden; /* Ensure the gradient doesn't spill out of the circle */
+  padding: 5px;
+}
+.spin-container-dark {
+  position: relative;
+  width: auto;
+  height: 10px;
+  border-radius: 50%;
+
+}
+
+.spin-container-dark::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  border-radius: 50%;
+  background: conic-gradient(from 0deg, transparent, rgba(46, 139, 87, 0.5), transparent);
+  background-size: 200% 200%;
+  animation: move 2s linear infinite; /* Adjust the duration as needed */
+}
+
+.spinning-container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: conic-gradient(from 0deg, rgba(46, 139, 87, 0.1), rgba(46, 139, 87, 0.5), transparent);
+  animation: spin 5s linear infinite; /* Adjust the duration as needed */
+}
+
+.headerImage img {
+  position: relative;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+@keyframes spin {
+  0% {
+    transform: translateX(0) rotate(0deg);
+  }
+  25% {
+    transform: translateX(100%) rotate(90deg);
+  }
+  50% {
+    transform: translateY(100%) rotate(180deg);
+  }
+  75% {
+    transform: translateX(-100%) rotate(270deg);
+  }
+  100% {
+    transform: translateY(-100%) rotate(360deg);
+  }
+}
+@keyframes move {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+/* About atart */
+.text-background::after {
+  content: 'Your Background Text Goes Here';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #333; /* Set your desired background color */
+  color: #fff; /* Set your desired text color */
+  padding: 20px; /* Adjust the padding as needed */
+  font-size: 2em; /* Adjust the font size as needed */
+  font-weight: bold;
+  box-sizing: border-box;
+}
+/* Resume */
+.timeline {
+  display: flex;
+  flex-direction: column;
+  align-items: right;
+}
+
+.event {
+  @apply relative w-1 bg-primary 
+}
+
+.event::before {
+  @apply content-[''] absolute top-[12%] md:top-[21%] -left-3.5 w-[35px] h-[35px] border-primary border-8 z-10 rounded-full translate-y-[-50%];
+  background: linear-gradient(
+    to bottom,
+    black,
+    black
+  )
+  rgb(var(--background-start-rgb));
+}
+
+.event::after {
+  @apply content-[''] absolute left-[50%] top-[12%] md:top-[21%] h-[5px] transform  translate-y-[-50%] border-l-primary border-l-[40px];
+  width: 20px; /* Adjust the width of the connecting line */
+  z-index: 1; /* Ensure the line is behind the circle */
+  content: '';
+}
+
+
+.eventContent {
+  @apply w-[420px]  p-16 mb-5  
+
+}
+.eventDate {
+ @apply p-2 bg-primary rounded-lg ml-16 w-28 text-white text-sm absolute top-6 md:right-[60%] md:top-16 md:mr-10
 }
