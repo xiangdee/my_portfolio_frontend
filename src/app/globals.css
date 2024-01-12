@@ -17,6 +17,7 @@
 }
 
 body {
+  overflow-x: hidden;
   color: rgb(var(--foreground-rgb));
   background: linear-gradient(
       to bottom,
@@ -26,6 +27,9 @@ body {
     rgb(var(--background-start-rgb));
 }
 
+.btn {
+ @apply p-3 shadow-md rounded-md
+}
 /* Nav */
 .nav {
   @apply py-5 px-5 md:flex md:flex-row md:justify-between  relative
@@ -151,7 +155,7 @@ body {
 }
 
 .event::before {
-  @apply content-[''] absolute top-[12%] md:top-[21%] -left-3.5 w-[35px] h-[35px] border-primary border-8 z-10 rounded-full translate-y-[-50%];
+  @apply content-[''] absolute top-[12%] md:top-[5%] -left-3.5 w-[35px] h-[35px] border-primary border-8 z-10 rounded-full translate-y-[-50%];
   background: linear-gradient(
     to bottom,
     black,
@@ -161,7 +165,7 @@ body {
 }
 
 .event::after {
-  @apply content-[''] absolute left-[50%] top-[12%] md:top-[21%] h-[5px] transform  translate-y-[-50%] border-l-primary border-l-[40px];
+  @apply content-[''] absolute left-[50%] top-[12%] md:top-[5%] h-[5px] transform  translate-y-[-50%] border-l-primary border-l-[40px];
   width: 20px; /* Adjust the width of the connecting line */
   z-index: 1; /* Ensure the line is behind the circle */
   content: '';
@@ -169,9 +173,34 @@ body {
 
 
 .eventContent {
-  @apply w-[420px]  p-16 mb-5  
+  @apply w-[300px] mx-8 pl-3 md:pr-4 mb-5 mt-16 md:mt-0 relative
 
 }
 .eventDate {
- @apply p-2 bg-primary rounded-lg ml-16 w-28 text-white text-sm absolute top-6 md:right-[60%] md:top-16 md:mr-10
+ @apply p-2 bg-primary rounded-lg ml-12 w-28 text-white text-sm absolute top-5 md:right-[60%] md:top-[0] md:mr-10
 }
+/* My projects  */
+.projectItem {
+  @apply relative w-[320px] shadow-lg rounded-lg bg-primary p-5 cursor-pointer overflow-hidden mb-5 text-white
+}
+.projectItem .overlay {
+  @apply absolute w-full h-full -top-full left-0 invisible opacity-0 justify-center items-center ;
+  transition: top 0.3s ease-in-out, opacity 0.3s ease-in-out;
+  background: linear-gradient(to bottom, rgba(var(--background-start-rgb)), rgba(var(--background-end-rgb)));
+
+}
+.projectItem:hover .overlay{
+  @apply flex visible opacity-100 top-0
+}
+/* Contact staet */
+.contactContainer {
+ @apply flex flex-row gap-5 p-5 shadow-2xl border border-primary rounded-lg w-full relative
+}
+
+.contactContainer .iconContainer { 
+  @apply w-12 h-12 rounded-full p-2 bg-primary flex items-center justify-center
+}
+.contactContainer p {
+  @apply flex-wrap text-sm w-2/3 
+}
+/* Contact End */

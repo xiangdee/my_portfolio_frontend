@@ -1,25 +1,36 @@
-"use client"
 import Image from 'next/image'
-import { MainHeader } from './components/mainHeader'
-import Typewriter from './components/TypeWritter';
+import { MainHeader } from '../components/mainHeader'
+import Typewriter from '../components/TypeWritter';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGithub, faInstagram, faLinkedinIn, faXTwitter } from '@fortawesome/free-brands-svg-icons';
-import { faArrowDown, faBook, faBriefcase, faDotCircle } from '@fortawesome/free-solid-svg-icons';
-import { scrollToElement } from './utils';
-import { useInView } from 'react-intersection-observer';
-import { motion } from 'framer-motion';
+import { faBook, faBriefcase, faDotCircle } from '@fortawesome/free-solid-svg-icons';
 
-export default function Home() {
-  
-  const [ref, inView] = useInView({
-    triggerOnce: true, // Only trigger once when the element enters the viewport
-    threshold: 0.5, // Trigger when 50% of the element is visible
-  });
+import { client } from '@/lib/sanity';
+import { ProjectType } from '@/types/project';
+import Services from '../homeCompnents/services';
+import { ScrollDownButton } from '../homeCompnents/ScrollDownButton';
+import Link from 'next/link';
+import ProjectsCompoent from '@/components/ProjectsCompoent';
+import ContactMe from '@/homeCompnents/ContactMe';
 
-  const variants = {
-    hidden: { opacity: 0, y: 50 },
-    visible: { opacity: 1, y: 0 },
-  };
+ async function getProjects() {
+  const projects = await client.fetch(
+    `*[_type == 'portfolio'] {
+      title,
+      category,
+      slug,
+      featuredImage,
+      content
+    }`
+  );
+
+  return projects 
+}
+
+
+
+export default async function Page() {
+ const projects:ProjectType[] = await getProjects();
   return (
     <>
     <MainHeader />
@@ -37,7 +48,7 @@ export default function Home() {
               <div className='flex justify-center'>
                 <h3 className='text-3xl text-center'>
                     <span className='block sm:inline'> Hi i am,</span>
-                   <span className='text-primary'><Typewriter texts={['Emmnuel Francis','Fullstack Developer','DevOps Engineer']}/> </span>
+                   <span className='text-primary'><Typewriter texts={['Emmanuel Francis','Fullstack Developer','DevOps Engineer']}/> </span>
                 </h3>
                 
               </div>
@@ -69,14 +80,7 @@ export default function Home() {
                       </a>
                   </div>
               </div>
-              <div className='mt-5 flex flex-row justify-center gap-5 p-2 cursor-pointer' onClick={()=>scrollToElement('about')}>
-                  <div>
-                     <FontAwesomeIcon icon={faArrowDown} size='sm'/>
-                  </div>
-                  <div>
-                    <span className='text-sm'>SCROLL DOWN</span>
-                  </div>
-              </div>
+              <ScrollDownButton />
             
         </div>
 
@@ -174,7 +178,7 @@ export default function Home() {
             </div>
 
             <div className='mt-5'>
-               <a  href='/my_resume.pdf' className=' p-3 bg-primary shadow-md rounded-md text-white' download={true}>Download Resume</a>
+               <a  href='/my_resume.pdf' className='btn bg-primary text-white' download={true}>Download Resume</a>
             </div>
           </div>
         </section>
@@ -192,86 +196,7 @@ export default function Home() {
           </div>
           
           <div className='mt-5 md:flex md:flex-row gap-10 md:col-span-4'>
-             <motion.div 
-              ref={ref}
-              initial="hidden"
-              animate={inView ? 'visible' : 'hidden'}
-              variants={variants}
-              transition={{ duration: 0.3 }}
-            
-             className='p-5 shadow-lg bg-primary rounded-lg text-white mb-5'>
-                <div className='flex flex-row justify-center'>
-                  <Image src={'/frontend_icon.png'} alt={''} height={100} width={100}/>
-                </div>
-                  <div className='py-10'>
-                     <h3 className='text-center text-xl'>Frontend Development</h3>
-                  </div>
-                  <div>
-                    <p className='text-center text-sm'>
-                    In the realm of full-stack development, I excel at creating seamless user experiences by leveraging 
-                    my skills in HTML, CSS, JavaScript, and various front-end frameworks. On the front end, 
-                    I am particularly adept at crafting intuitive and visually appealing user interfaces using modern technologies. 
-
-                    </p>
-                  </div>
-                  <div>
-
-                  </div>
-             </motion.div>
-
-             <motion.div 
-              ref={ref}
-              initial="hidden"
-              animate={inView ? 'visible' : 'hidden'}
-              variants={variants}
-              transition={{ duration: 0.3 }}
-            
-             className='p-5 shadow-lg bg-primary rounded-lg text-white mb-5'>
-                <div className='flex flex-row justify-center'>
-                  <Image src={'/backend_icon.png'} alt={''} height={100} width={100}/>
-                </div>
-                  <div className='py-10'>
-                     <h3 className='text-center text-xl'>Backend Development</h3>
-                  </div>
-                  <div>
-                    <p className='text-center text-sm'>
-                    On the back end, I am adept at architecting and implementing scalable server-side solutions, utilizing technologies like Node.js, Php, and C#. 
-                    My goal is to deliver not only clean and efficient code but also pixel-perfect designs that resonate with users.. 
-
-                    </p>
-                  </div>
-                  <div>
-
-                  </div>
-             </motion.div>
-
-             <motion.div 
-              ref={ref}
-              initial="hidden"
-              animate={inView ? 'visible' : 'hidden'}
-              variants={variants}
-              transition={{ duration: 0.3 }}
-            
-             className='p-5 shadow-lg bg-primary rounded-lg text-white mb-5'>
-                <div className='flex flex-row justify-center'>
-                  <Image src={'/devops_icon.png'} alt={''} height={100} width={100}/>
-                </div>
-                  <div className='py-10'>
-                     <h3 className='text-center text-xl'>Devops Engineering</h3>
-                  </div>
-                  <div>
-                    <p className='text-center text-sm'>
-                    I specialize in automating and streamlining the software development and deployment lifecycle. 
-                    From version control to continuous integration and deployment, I ensure that the development pipeline is 
-                    efficient and reliable. Proficient in tools like Docker, Kubernetes, Jenkins, and Terraform, 
-                    I orchestrate the deployment and management of applications in a cloud-native environment. 
-
-                    </p>
-                  </div>
-                  <div>
-
-                  </div>
-             </motion.div>
+             <Services/>
           </div>
 
           <div className='mt-5 md:flex md:flex-row md:col-span-2 gap-10'>
@@ -360,7 +285,7 @@ export default function Home() {
       {/* End About Me */}
 
       {/* Resume state */}
-        <section className='p-10'>
+        <section className='p-10' id='resume'>
           <div>
             <h1 className='font-bold text-2xl'>My Resume</h1>
           </div>
@@ -483,6 +408,34 @@ export default function Home() {
           </div>
         </section>
       {/* Resume End */}
+      {/* Portfolio Start */}
+      <section className='p-10' id='works'>
+          <div>
+            <h1 className='font-bold text-2xl'>My Works</h1>
+          </div>
+          <div className=' w-36'>
+            <div className='spin-container-dark my-5 '>
+
+            </div>
+          </div>
+          {
+            projects && 
+            <>
+            <ProjectsCompoent projects={projects.slice(0,5)}/>
+            <div className='mt-10 text-center'>
+                <Link href={'/myprojects'} className='btn bg-primary text-white'>View More</Link>
+             </div>
+              </>
+          }
+          
+          
+        
+        </section>
+        {/* Portfolio End */}
+        {/* Contact me */}
+        <ContactMe/>
+        {/* Contact me start */}
     </main></>
   )
 }
+
