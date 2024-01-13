@@ -2,33 +2,36 @@ import { MainHeader } from '@/components/mainHeader';
 import ContactMe from '@/homeCompnents/ContactMe';
 import { client, urlFor } from '@/lib/sanity';
 import { ProjectType } from '@/types/project';
+import { GetStaticPaths } from 'next';
 import Image  from 'next/image';
+import { ParsedUrlQuery } from 'querystring';
 import React from 'react'
 
+interface Params extends ParsedUrlQuery {
+  slug: string,
+}
 
-export async function getStaticPaths () {
-  
-    const projects = await client.fetch(
-        `*[_type == 'portfolio'] {
-          title,
-          category,
-          slug,
-          featuredImage,
-          content
-        }`
-      );
-    
-    const path = projects.map((project:ProjectType) => {
-       return {params: { slug : project.slug.current }}
-    });    
-    console.log(path);
 
-    return {
-      paths:path,
-      fallback: 'blocking'
-    }
-  
-  }
+export const getStaticPaths: GetStaticPaths<Params> = async () => {
+  const projects = await client.fetch(
+    `*[_type == 'portfolio'] {
+      title,
+      category,
+      slug,
+      featuredImage,
+      content
+    }`
+  );
+
+  const paths = projects.map((project: ProjectType) => ({
+    params: { slug: project.slug.current },
+  }));
+
+  return {
+    paths,
+    fallback: false,
+  };
+};
 
   const getProject = async (slug: any):Promise<ProjectType> => {
   
@@ -95,10 +98,11 @@ export default async function Page({params}:{params:any}) {
       })}
       
         </div>
-         {/* Contact me */}
-         <ContactMe/>
-        {/* Contact me start */}
+        
       </main>
+       {/* Contact me */}
+       <ContactMe/>
+        {/* Contact me start */}
     </>
   )
 }

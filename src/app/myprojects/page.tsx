@@ -48,12 +48,12 @@ export default async function Page() {
               </>
     }
     </div>
+ 
+    
+    </main>
      {/* Contact me */}
      <ContactMe/>
      {/* Contact me start */}
-    
-    </main>
-      
     </>
   )
 }

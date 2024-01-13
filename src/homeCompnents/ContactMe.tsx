@@ -1,4 +1,4 @@
-import { faEnvelope, faPhone } from '@fortawesome/free-solid-svg-icons'
+import { faEnvelope, faLocation, faPhone } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React from 'react'
 
@@ -54,11 +54,11 @@ export default function ContactMe() {
 
                         <div className='contactContainer mt-5'>
                             <div className='iconContainer'>
-                                    <FontAwesomeIcon icon={faPhone} size='sm' color='white'/>
+                                    <FontAwesomeIcon icon={faLocation} size='sm' color='white'/>
                             </div>
                             <div>
-                                <h6 className='text-lg md:text-xl'>Contact on phone</h6>
-                                <p>+2349031290387</p>
+                                <h6 className='text-lg md:text-xl'>My location</h6>
+                                <p>Nigeria</p>
                             </div>
                             <div>
 
