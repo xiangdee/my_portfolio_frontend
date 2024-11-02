@@ -11,17 +11,34 @@ type SanityImage = {
   asset: SanityImageReference;
 };
 
-type ProjectContent = {
+export type ProjectContent = {
   asset: SanityImageSource;
   _key: Key | null | undefined;
   _type: 'block';
-  style: 'normal';
+  style: 'normal' | 'h3' | 'h4';
+  listItem?:string | undefined | null;
+  title?:string | undefined | null;
+  level?:number | undefined | null;
+  images?:ImageType[] | undefined | null;
+  markDefs?:{"_type": string,"href"?: string,"_key": string}[];
   children: Array<{
     _key: Key | null | undefined;
     _type: 'span';
     text: string;
   }>;
 };
+
+export interface imageGroupImages {
+
+}
+
+export interface ImageType {
+  altText: string; // Alternate text for the image
+  _type: string; // Type of the object, should be 'image'
+  caption: string; // Caption for the image
+  _key: string; // Unique key for the image
+  asset: SanityImageReference; // The asset reference
+}
 
 export type ProjectType = {
   title: string;
@@ -30,6 +47,7 @@ export type ProjectType = {
     current: string;
     _type: 'slug';
   };
+  tags:string[],
   featuredImage: SanityImageSource;
   content: ProjectContent[];
 };

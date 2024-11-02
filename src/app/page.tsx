@@ -15,13 +15,15 @@ import ContactMe from '@/homeCompnents/ContactMe';
 
  async function getProjects() {
   const projects = await client.fetch(
-    `*[_type == 'portfolio'] {
+    `*[_type == 'portfolio2'] {
       title,
       category,
       slug,
       featuredImage,
+      tags,
       content
-    }`
+    }`,
+    { cache: 'no-store' }
   );
 
   return projects 

@@ -11,17 +11,27 @@ export default function ProjectsCompoent({projects}:{projects:ProjectType[]}) {
     <div className='md:flex md:flex-row gap-10 md:grid-cols-3'>
         {
              projects.map((project: ProjectType, index) => {
+            
                 return (
                     
                   <div key={index} className='projectItem'>
+                 
                     <Image
                       src={urlFor(project.featuredImage).width(300).height(300).url()}
+                      className=' rounded-md'
                       alt={project.title}
                       width={300}
                       height={300} />
                     <div className='mt-2'>
                       <h3 className='text-xl'>{project.title}</h3>
-                      <h4 className='text-lg'>Category:{project.category}</h4>
+                      <h4 className='text-lg'>Category: {project.category}</h4>
+                      <div className='z-[20]'>
+                        <ul className='flex flex-wrap gap-2'>
+                          {project.tags &&
+                            project.tags.map(tag =><li key={tag} className=' text-indigo-600'><Link href={`/myprojects?tag=${tag}`}>#{tag}</Link></li>)
+                          }
+                        </ul>
+                      </div>
                     </div>
         
                     <div className='overlay'>
