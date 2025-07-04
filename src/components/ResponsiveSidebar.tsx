@@ -9,10 +9,11 @@ const ResponsiveSidebar = () => {
   const [pathname, setPathname] = useState('') 
 
   React.useEffect(() => {
-      if (window !== undefined) {
-          setPathname(new URL(window?.location?.href).pathname)
-      }
-  },[]);
+    if (typeof window !== 'undefined') {
+        setPathname(new URL(window.location.href).pathname)
+    }
+}, []);
+
   let routePrefix = pathname.split("/")[1];
  routePrefix = routePrefix === "" ? "" : "/";
 

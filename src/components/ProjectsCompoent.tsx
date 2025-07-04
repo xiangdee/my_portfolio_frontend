@@ -32,7 +32,7 @@ export default function ProjectsCompoent({ projects }: { projects: ProjectType[]
                         </ul>
             </div>
             <div className="flex justify-between items-center">
-              <h3 className="text-green-400 font-semibold text-lg leading-snug">
+              <h3 className="text-green-400 font-semibold text-sm break-all leading-snug">
                 {project.title}
               </h3>
               <Link href={`/project/${project.slug.current}`}>
