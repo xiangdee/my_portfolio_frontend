@@ -1,76 +1,61 @@
-import { faEnvelope, faLocation, faPhone } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import React from 'react'
+import { faEnvelope, faLocationDot, faPhone } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import React from 'react';
 
 export default function ContactMe() {
   return (
-    <section className='p-10' id='contact'>
-       <div>
-            <h1 className='font-bold text-2xl'>Contact Me</h1>
-          </div>
-          <div className=' w-36'>
-            <div className='spin-container-dark my-5 '>
+    <section id="contact" className="py-16 px-4 sm:px-10 bg-black text-white">
+      <div className="max-w-6xl mx-auto space-y-10">
+        {/* Heading */}
+        <div className="text-center">
+          <h2 className="text-4xl font-bold">Contact Me</h2>
+          <p className="text-gray-400 mt-3 max-w-2xl mx-auto">
+            Reach out for collaborations, freelance projects, or just to say hi!
+          </p>
+        </div>
 
+        {/* Contact Cards */}
+        <div className="grid gap-6 md:grid-cols-3">
+          {[
+            {
+              icon: faPhone,
+              label: 'Phone',
+              value: '+234 903 129 0387',
+              bg: 'bg-green-500/10',
+              iconColor: 'text-green-400',
+            },
+            {
+              icon: faEnvelope,
+              label: 'Email',
+              value: 'emmanuelfrancismicah@gmail.com',
+              bg: 'bg-blue-500/10',
+              iconColor: 'text-blue-400',
+            },
+            {
+              icon: faLocationDot,
+              label: 'Location',
+              value: 'worlwide',
+              bg: 'bg-purple-500/10',
+              iconColor: 'text-purple-400',
+            },
+          ].map((item, i) => (
+            <div
+              key={i}
+              className="rounded-[24px] p-4 items-center bg-[#111111] backdrop-blur-[36px] shadow-[inset_0px_0px_20px_0px_rgba(103,103,103,0.25)] hover:shadow-[inset_0px_0px_30px_0px_rgba(103,103,103,0.4)] transition-all duration-300"
+            >
+              <div className="flex items-center gap-2">
+                <div className={`w-12 h-12 rounded-full flex justify-center items-center grow-0 shrink-0 ${item.bg}`}>
+                  <FontAwesomeIcon icon={item.icon} className={`${item.iconColor} text-xl`} />
+                </div>
+                <div>
+                  <h4 className="text-lg font-semibold">{item.label}</h4>
+                  <p className="text-sm text-gray-300 mt-1 break-words break-all w-[100%]">{item.value}</p>
+                </div>
+              </div>
             </div>
-          </div>
-
-          <div className='md:flex md:flex-row md:col-span-2 md:justify-between'>
-                <div>
-                    <div>
-                        <h3 className='text-2xl'>Contact Information</h3>
-                        <p>
-                            Here you hvae more information on how to reach me
-                        </p>
-                    </div>
-
-                    <div className='mt-5'>
-                        <div className='contactContainer'>
-                            <div className='iconContainer'>
-                                    <FontAwesomeIcon icon={faPhone} size='lg' color='white'/>
-                            </div>
-                            <div>
-                                <h6 className='text-lg md:text-xl'>Contact on phone</h6>
-                                <p>+2349031290387</p>
-                            </div>
-                            <div>
-
-                            </div>
-                        </div>
-
-                        <div className='contactContainer mt-5'>
-                            <div className=' w-1/4'>
-                            <div className='iconContainer'>
-                                    <FontAwesomeIcon icon={faEnvelope} size='lg' color='white'/>
-                            </div>
-                            </div>
-                            <div className=' w-3/4'>
-                                <h6 className='text-lg md:text-xl'>Contact on Email</h6>
-                                <p className='flex flex-wrap'>emmanuelfrancismicah@gmail.com</p>
-                            </div>
-                            <div>
-                                
-                            </div>
-                        </div>
-
-                        <div className='contactContainer mt-5'>
-                            <div className='iconContainer'>
-                                    <FontAwesomeIcon icon={faLocation} size='sm' color='white'/>
-                            </div>
-                            <div>
-                                <h6 className='text-lg md:text-xl'>My location</h6>
-                                <p>Nigeria</p>
-                            </div>
-                            <div>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div>
-                    {/* <h3>Contact Information</h3> */}
-                </div>
-          </div>
+          ))}
+        </div>
+      </div>
     </section>
-  )
+  );
 }

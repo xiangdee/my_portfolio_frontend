@@ -1,114 +1,108 @@
-"use client"
-import { motion, inView } from 'framer-motion'
-import React from 'react'
-import { useInView } from 'react-intersection-observer';
+'use client'
+import { motion, useAnimation } from 'framer-motion'
+import { useInView } from 'react-intersection-observer'
+import { useEffect } from 'react'
 import Image from 'next/image'
+import clsx from 'clsx'
+
+const services = [
+  {
+    title: 'Frontend Development',
+    icon: '/frontend_icon.png',
+    description: `Crafting responsive, high-performance interfaces using modern frameworks like React, Tailwind CSS, and Next.js.`,
+    color: 'from-green-400 to-blue-500',
+  },
+  {
+    title: 'Backend Development',
+    icon: '/backend_icon.png',
+    description: `Building secure, scalable APIs with Node.js, C#,python and PHP. I focus on clean architecture and performance.`,
+    color: 'from-purple-500 to-indigo-500',
+  },
+  {
+    title: 'DevOps Engineering',
+    icon: '/devops_icon.png',
+    description: `Automating infrastructure and deployment using Docker, Kubernetes, Jenkins, and Terraform for reliability.`,
+    color: 'from-yellow-400 to-red-500',
+  }
+  
+]
+
+const cardVariants = {
+  hidden: { opacity: 0, y: 40 },
+  visible: { opacity: 1, y: 0 },
+}
 
 export default function Services() {
-      
+  const controls = useAnimation()
   const [ref, inView] = useInView({
-    triggerOnce: true, // Only trigger once when the element enters the viewport
-    threshold: 0.5, // Trigger when 50% of the element is visible
-  });
-
-  const [ref2, inView2] = useInView({
     triggerOnce: true,
-    threshold: 0.5,
-  });
+    threshold: 0.25,
+  })
 
-  const [ref3, inView3] = useInView({
-    triggerOnce: true,
-    threshold: 0.5,
-  });
+  useEffect(() => {
+    if (inView) controls.start('visible')
+  }, [inView, controls])
 
-  const variants = {
-    hidden: { opacity: 0, y: 50 },
-    visible: { opacity: 1, y: 0 },
-  };
   return (
-    <>
-      <motion.div 
-              ref={ref}
-              initial="hidden"
-              animate={inView ? 'visible' : 'hidden'}
-              variants={variants}
-              transition={{ duration: 0.3 }}
-            
-             className='p-5 shadow-lg bg-primary rounded-lg text-white mt-5'>
-                <div className='flex flex-row justify-center'>
-                  <Image src={'/frontend_icon.png'} alt={''} height={100} width={100}/>
-                </div>
-                  <div className='py-10'>
-                     <h3 className='text-center text-xl'>Frontend Development</h3>
-                  </div>
-                  <div>
-                    <p className='text-center text-sm'>
-                    In the realm of full-stack development, I excel at creating seamless user experiences by leveraging 
-                    my skills in HTML, CSS, JavaScript, and various front-end frameworks. On the front end, 
-                    I am particularly adept at crafting intuitive and visually appealing user interfaces using modern technologies. 
+    <section id="services" className="relative overflow-hidden">
+      <motion.div
+        ref={ref}
+        initial="hidden"
+        animate={controls}
+        variants={{
+          visible: { transition: { staggerChildren: 0.15 } },
+        }}
+        className="grid md:grid-cols-3 gap-8 max-w-7xl mx-auto"
+      >
+        {services.map((service, idx) => (
+          <motion.div
+            key={idx}
+            variants={cardVariants}
+            whileHover={{ scale: 1.03, rotateX: 1, rotateY: -2 }}
+            transition={{ type: 'spring', stiffness: 150 }}
+            className={clsx(
+              'rounded-[24px] p-6 bg-[#111111]/70 backdrop-blur-xl relative group overflow-hidden',
+              'shadow-[inset_0_0_20px_rgba(103,103,103,0.25)] border border-white/10 hover:border-white/20',
+              'hover:shadow-xl transition-all duration-500 flex flex-row gap-4'
+            )}
+          >
+            {/* Colored Gradient Edge Glow */}
+            <div
+              className={clsx(
+                'absolute -inset-px rounded-[24px] z-0',
+                `bg-gradient-to-tr ${service.color}`,
+                'opacity-20 blur-lg group-hover:opacity-30 transition-opacity duration-500'
+              )}
+            />
 
-                    </p>
-                  </div>
-                  <div>
+            {/* Icon */}
+            <div className="relative z-10 w-20 h-20 mx-auto mb-5">
+              <Image
+                src={service.icon}
+                alt={service.title}
+                layout="fill"
+                objectFit="contain"
+                className="drop-shadow-[0_0_12px_rgba(0,255,255,0.3)]"
+              />
+            </div>
 
-                  </div>
-             </motion.div>
+            <div>
+              {/* Title */}
+            <h3 className="relative z-10 text-xl text-white font-semibold   tracking-tight">
+              {service.title}
+            </h3>
 
-             <motion.div 
-              ref={ref2}
-              initial="hidden"
-              animate={inView2 ? 'visible' : 'hidden'}
-              variants={variants}
-              transition={{ duration: 0.3 }}
-            
-             className='p-5 shadow-lg bg-primary rounded-lg text-white mt-5 clear-both'>
-               <div>
-               <div className='flex flex-row justify-center'>
-                  <Image src={'/backend_icon.png'} alt={''} height={100} width={100}/>
-                </div>
-                  <div className='py-10'>
-                     <h3 className='text-center text-xl'>Backend Development</h3>
-                  </div>
-                  <div>
-                    <p className='text-center text-sm'>
-                    On the back end, I am adept at architecting and implementing scalable server-side solutions, utilizing technologies like Node.js, Php, and C#. 
-                    My goal is to deliver not only clean and efficient code but also pixel-perfect designs that resonate with users.. 
+            {/* Description */}
+            <p className="relative z-10 text-sm text-slate-400  leading-relaxed">
+              {service.description}
+            </p>
+            </div>
+          </motion.div>
+        ))}
+      </motion.div>
 
-                    </p>
-                  </div>
-                  <div>
-
-                  </div>
-               </div>
-             </motion.div>
-
-             <motion.div 
-              ref={ref3}
-              initial="hidden"
-              animate={inView3 ? 'visible' : 'hidden'}
-              variants={variants}
-              transition={{ duration: 0.3 }}
-            
-             className='p-5 shadow-lg bg-primary rounded-lg text-white mt-5'>
-                <div className='flex flex-row justify-center'>
-                  <Image src={'/devops_icon.png'} alt={''} height={100} width={100}/>
-                </div>
-                  <div className='py-10'>
-                     <h3 className='text-center text-xl'>Devops Engineering</h3>
-                  </div>
-                  <div>
-                    <p className='text-center text-sm'>
-                    I specialize in automating and streamlining the software development and deployment lifecycle. 
-                    From version control to continuous integration and deployment, I ensure that the development pipeline is 
-                    efficient and reliable. Proficient in tools like Docker, Kubernetes, Jenkins, and Terraform, 
-                    I orchestrate the deployment and management of applications in a cloud-native environment. 
-
-                    </p>
-                  </div>
-                  <div>
-
-                  </div>
-             </motion.div>
-    </>
+      {/* Background glow */}
+      <div className="absolute -top-40 left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-green-500/10 blur-[180px] rounded-full z-0 pointer-events-none" />
+    </section>
   )
 }
