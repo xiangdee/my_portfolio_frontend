@@ -43,13 +43,13 @@ function UserInfoCard() {
                       <Typewriter texts={['Emmanuel Francis','Fullstack Developer','DevOps Engineer']}/> </span>
           </div>
           <div className='mt-5'>
-            <a href='mailto:emmanuelfrancismicah@gmail.com' className='text-center text-slate-400 block break-all text-sm md:text-lg'>
-              Emmanuelfrancismicah@gmail.com</a>
+            <a href='mailto:efrancismicah@gmail.com' className='text-center text-slate-400 block break-all text-sm md:text-lg'>
+              efrancismicah@gmail.com</a>
           </div>
           {/* Available for work */}
           <div className='flex justify-center mt-2'>
             <div className='py-2 px-4 rounded-2xl bg-primary/10 items-center'>
-                <a href='mailto:emmanuelfrancismicah@gmail.com' className='text-center text-white  break-all text-sm md:text-lg
+                <a href='mailto:efrancismicah@gmail.com' className='text-center text-white  break-all text-sm md:text-lg
                 flex flex-row justify-center items-center gap-2 animate-pulse 
                 '>
                   <span className=' '><FontAwesomeIcon icon={faCircle} size='xs' color='white'/> </span>

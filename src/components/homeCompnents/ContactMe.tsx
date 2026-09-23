@@ -27,7 +27,7 @@ export default function ContactMe() {
             {
               icon: faEnvelope,
               label: 'Email',
-              value: 'emmanuelfrancismicah@gmail.com',
+              value: 'efrancismicah@gmail.com',
               bg: 'bg-blue-500/10',
               iconColor: 'text-blue-400',
             },
