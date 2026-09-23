@@ -30,9 +30,16 @@ const workExperience = [
   {
     company: 'Surfmeal',
     position: 'Fullstack Engineer',
-    year: '2024 - Present',
+    year: '2024 - 2026',
     description:
       'Created a full food delivery platform with a React Native app and a Next.js landing page. Implemented a NestJS backend with Prisma for robust APIs, including user auth and real-time order tracking. Integrated multiple payment methods and deployed via Docker on AWS.',
+  },
+  {
+    company: 'Kerabie',
+    position: 'Fullstack Engineer',
+    year: '2026 - Present',
+    description:
+      'Building Kerabie, a multi-tenant omnichannel support platform, with a NestJS and Prisma backend, Socket.IO real-time messaging on Redis, and a Next.js dashboard. Also building Kerabie Mail, a business email service with a FastAPI backend, Next.js console, and iOS and Android apps with RevenueCat subscriptions.',
   },
 ]
 
