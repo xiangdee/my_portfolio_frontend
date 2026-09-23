@@ -56,7 +56,7 @@ function ResumeSection() {
 
         <div className="mt-6 space-y-6 md:ml-10">
           <div>
-            <h4 className="text-lg font-bold text-green-400">Web Design — Linet Paul Institute</h4>
+            <h4 className="text-lg font-bold text-green-400">Web Design, Linet Paul Institute</h4>
             <p className="text-sm text-slate-400">2014 - 2015</p>
             <p className="text-slate-300 mt-2">
               Built foundational skills in design thinking, web standards, and responsive HTML/CSS design.
@@ -64,7 +64,7 @@ function ResumeSection() {
           </div>
 
           <div>
-            <h4 className="text-lg font-bold text-green-400">B.Sc Computer Science — Novena University</h4>
+            <h4 className="text-lg font-bold text-green-400">B.Sc Computer Science, Novena University</h4>
             <p className="text-sm text-slate-400">2015 - 2019</p>
             <p className="text-slate-300 mt-2">
               Gained deep experience in data structures, software engineering, algorithm design, and collaborative development.

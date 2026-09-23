@@ -7,13 +7,13 @@ import Link from 'next/link';
 
 async function getProjects() {
   const projects = await client.fetch(
-    `*[_type == 'portfolio'] {
+    `*[_type == 'portfolio'] | order(coalesce(order, 1000) asc, _createdAt desc) {
       title,
       category,
       slug,
       featuredImage,
       tags,
-      content
+      period
     }`
   );
 

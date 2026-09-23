@@ -5,7 +5,7 @@ import { SanityImageSource } from '@sanity/image-url/lib/types/types';
 
 
 export const client = createClient({
-    projectId: 'vimxt1l1',
+    projectId: '571907hm',
     dataset: 'production',
     useCdn: false, // set to `false` to bypass the edge cache
     apiVersion: '2024-05-03', // use current date (YYYY-MM-DD) to target the latest API version

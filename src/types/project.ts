@@ -40,9 +40,19 @@ export interface ImageType {
   asset: SanityImageReference; // The asset reference
 }
 
+export type ProjectLink = {
+  _key: string;
+  kind: 'website' | 'playstore' | 'appstore' | 'other';
+  label: string;
+  url: string;
+};
+
 export type ProjectType = {
   title: string;
   category: string;
+  summary?: string;
+  period?: string;
+  links?: ProjectLink[];
   slug: {
     current: string;
     _type: 'slug';

@@ -7,13 +7,13 @@ import React from 'react';
 
 async function getProjects() {
   const projects = await client.fetch(
-    `*[_type == 'portfolio'] {
+    `*[_type == 'portfolio'] | order(coalesce(order, 1000) asc, _createdAt desc) {
       title,
       category,
       slug,
       featuredImage,
       tags,
-      content
+      period
     }`
   );
 
@@ -32,7 +32,7 @@ export default async function Page() {
             My <span className="text-green-400">Projects</span> Showcase
           </h1>
           <p className="text-gray-400 text-base sm:text-lg leading-relaxed max-w-3xl">
-            Explore a diverse portfolio of real-world work — from beautiful UI designs and scalable full-stack
+            Explore a diverse portfolio of real-world work, from beautiful UI designs and scalable full-stack
             applications to finely-crafted backend services. Every project blends creativity, technology, and problem-solving.
           </p>
         </section>

@@ -41,7 +41,9 @@ export default function ProjectsCompoent({ projects }: { projects: ProjectType[]
                 </div>
               </Link>
             </div>
-            <p className="text-xs text-white/70 bg-white/10 px-2 py-1 rounded-full mt-2 inline-block">May 2024</p>
+            {project.period && (
+              <p className="text-xs text-white/70 bg-white/10 px-2 py-1 rounded-full mt-2 inline-block">{project.period}</p>
+            )}
           </div>
         </div>
       ))}
